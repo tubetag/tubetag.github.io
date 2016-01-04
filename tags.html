@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Expires" CONTENT="0"> 
+    <title>Tube Tag v0.1</title>
+	<link rel="shortcut icon" href="img/favicon2.ico">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap-editable.css" rel="stylesheet">
+<!--
+	<link href="css/bootstrap-combined.min.css" rel="stylesheet">
+-->
+	<link href="css/carousel.css" rel="stylesheet">
+  </head>
+  <body role="document" id="all" style="display:none">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="http://enhanceralph.github.io/tubetag/">Tube Tag</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="http://enhanceralph.github.io/tubetag/">AB Repeater</a></li>
+					<li><a href="http://enhanceralph.github.io/tubetag/tags.html">Tags Area</a></li>
+					<li><a href="https://www.facebook.com/tubetag">FB</a></li>
+					<li class="dropdown"><a href="#about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Editor</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+						</ul>
+					</li>
+					<li><a href="http://enhanceralph.github.io/tubetag/contact.html">Contact</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right top-nav">
+					<li class="dropdown"><a href="#about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog" style="width:20px"></span><span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">XXXX</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+						</ul>
+					</li>
+				<ul/>
+			</div>
+		</div>
+	</nav>
+	<div style="height:40px"></div>
+	<div class="container theme-showcase">
+		<br/>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+<!--
+				<div id="debug">debug info</div>
+-->
+				<div style="text-align:center">
+					<!-- Video Modal -->
+					<div class="modal fade" id="woootModal" tabindex="-1" role="dialog" aria-labelledby="woootModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="woootModalLabel">Video</h4>
+								</div>
+								<div class="modal-body">
+									<div style="text-align:center">
+										<div class="row">
+											<div class="col-md-12">
+												<div id="wooot"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#woootModal" id="woootModalBtn">
+						<span class="glyphicon glyphicon-film" style="width:15px"></span>
+					</button>
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="repeat" checked=true>Repeat
+						</label>
+					</div>
+
+				</div>
+				<div id="cc"></div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div>
+					<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#playerInfo">
+						<span class="glyphicon glyphicon-info-sign" style="width:15px"></span>
+					</button>
+				</div>
+				<div id="playerInfo" class="collapse in">
+					<table class="table">
+						<thead>
+							<tr><th>Info</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>State: </td><td><span id="state"></span></td></tr>
+							<tr><td>Position: </td><td><span id="position"></span></td></tr>
+							<tr><td>Duration: </td><td><span id="duration"></span></td></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+	<script language="javascript" type="text/javascript" src="js/jquery.js"></script>
+	<div id="test">
+	</div>
+	<script>
+	</script>
+    <script src="js/react-with-addons.js"></script>
+    <script src="js/browser.min.js"></script>
+	<script type="text/babel">
+	</script>
+	<script>
+        var ThumbNail = React.createClass({displayName: "ThumbNail",
+            getInitialState: function() {
+                return null; 
+            },
+            handleChange:function(){
+            },
+            componentDidMount: function() {
+            },
+            render: function() {
+                var imgSrc="http://img.youtube.com/vi/"+this.props.vid+"/1.jpg"; 
+                return (
+                    React.createElement("div", {className: "row"}, 
+                        React.createElement("div", {className: "col-xs-6 col-md-3"}, 
+                            React.createElement("a", {href: "#"+this.props.id+"Text", class: "thumbnail"}, 
+                                React.createElement("img", {src: imgSrc, alt: "180x100%", "data-holder-rendered": "true", id: this.props.id+"Img"})
+                            )
+                        )
+                    )
+                );
+            }
+        });
+        function createThumbNail(div, vid, id){
+            var divObj=document.getElementById(div); 
+            React.render(
+                React.createElement(ThumbNail, {vid: vid, id: id}),
+                divObj
+            );
+        }
+        var TagInfo = React.createClass({displayName: "TagInfo",
+            getInitialState: function() {
+                return null;
+            },
+            handleChange:function(){
+            },
+            componentDidMount: function() {
+            },
+            render: function() {
+                return (
+                    React.createElement("table", {className: "table"}, 
+                        React.createElement("thead", null, 
+                            React.createElement("tr", null, React.createElement("th", null, "Info: "))
+                        ), 
+                        React.createElement("tbody", null, 
+                            React.createElement("tr", null, React.createElement("td", null, "Title: "), React.createElement("td", null, this.props.title)), 
+                            React.createElement("tr", null, React.createElement("td", null, "Video ID: "), React.createElement("td", null, this.props.vid)), 
+                            React.createElement("tr", null, React.createElement("td", null, "Start Time: "), React.createElement("td", null, this.props.startTime)), 
+                            React.createElement("tr", null, React.createElement("td", null, "End Time: "), React.createElement("td", null, this.props.endTime))
+                        )
+                    )
+                );
+            }
+        });
+        var PlayerInfo = React.createClass({displayName: "PlayerInfo",
+            getInitialState: function() {
+                return null;
+            },
+            handleChange:function(){
+            },
+            componentDidMount: function() {
+            },
+            render: function() {
+                return (
+                    React.createElement("table", {className: "table"}, 
+                        React.createElement("thead", null, 
+                            React.createElement("tr", null, React.createElement("th", null, "Player Info"))
+                        ), 
+                        React.createElement("tbody", null, 
+                            React.createElement("tr", null, React.createElement("td", null, "State: "), React.createElement("td", null, React.createElement("span", {id: "state"}))), 
+                            React.createElement("tr", null, React.createElement("td", null, "Title: "), React.createElement("td", null, React.createElement("span", {id: "title"}))), 
+                            React.createElement("tr", null, React.createElement("td", null, "Position: "), React.createElement("td", null, React.createElement("span", {id: "position"}))), 
+                            React.createElement("tr", null, React.createElement("td", null, "Duration: "), React.createElement("td", null, React.createElement("span", {id: "duration"})))
+                        )
+                    )
+                );
+            }
+        });
+        function renderTagInfo(div, vid, start, end, title){
+            var divObj=document.getElementById(div);
+            React.render(
+                React.createElement(TagInfo, {vid: vid, startTime: start, endTime: end, title:title}),
+                divObj
+            );
+        }
+        $("#addTagModalBtn").click(function(e){
+            renderTagInfo("tagInfo", playIndex.vid, playIndex.startTime, playIndex.endTime, playIndex.title);
+        }); 
+        React.render(
+            React.createElement(PlayerInfo, null),
+            document.getElementById("playerInfo")
+        );
+
+        var TagBtn = React.createClass({displayName: "TagBtn",
+            getInitialState: function() {
+                return null; 
+            },
+            handleChange:function(){
+            },
+            componentDidMount: function() {
+            },
+            render: function() {
+                var spanstylex=this.props.spanstyle;
+                return (
+                    React.createElement("button", {type: "button", className: "btn btn-default btn-lg", id: this.props.id}, 
+                        React.createElement("span", {className: this.props.className, style: spanstylex})
+                    )
+                );
+            }
+        });
+        function createTagBtn(div, id, c, s){
+            var style=s; 
+            var divObj=document.getElementById(div); 
+            React.render(
+                React.createElement(TagBtn, {id: id, className: c, spanstyle: s}),
+                divObj
+            );
+        }
+		//createTagBtn("test", "xxx", "glyphicon glyphicon-pause", {});
+	</script>
+	<script>
+		var player,
+			tag = document.createElement('script'),
+			firstScriptTag = document.getElementsByTagName('script')[6];
+
+		var playIndexArray={}; 
+
+		var playIndex={
+			state:0,
+			//vid:"jExYHd1yyWc",
+			vid:parseYoutubeURL("https://www.youtube.com/watch?v=R5Ty4e2UVME"),
+			//vid:parseYoutubeURL("https://www.youtube.com/watch?v=jExYHd1yyWc"),
+			//R5Ty4e2UVME
+			title:"",
+			startTime:0,
+			endTime:0,
+			position:0,
+			duration:0,
+			repeat:1
+		}; 
+		var logDurationTimer; 
+		function makeid()
+		{
+			var text = "";
+			var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+			for( var i=0; i < 10; i++ )
+				text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+			return text;
+		}
+
+		function updatePlayIndex(ind){
+			if(ind.vid.match(playIndex.vid)==null){
+				player.loadVideoById({
+					videoId:ind.vid
+				});
+			}
+			playIndex.title=ind.title;
+			playIndex.vid=ind.vid;
+			playIndex.startTime=ind.startTime;
+			playIndex.endTime=ind.endTime;
+			saveLocalStoragePIDnArray(playIndex);
+		}
+
+		function parseYoutubeURL(url){
+			var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+			var match = url.match(regExp);
+			if (match && match[2].length == 11) {
+			  return match[2];
+			} else {
+			  //error
+			  return url; 
+			}
+		}
+
+		//tag.src = "https://www.youtube.com/iframe_api";
+		//firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		function onPlaybackQualityChange(event) {
+			console.log(event);
+		}
+
+		function onPlayerStateChange(event) {
+			console.log(event);
+			if (event.data == YT.PlayerState.PLAYING) {
+				$("#state").html("Playing");
+				$("#pauseLogo").show();
+				$("#playLogo").hide(0);
+				playIndex.state=1; 
+			}else{
+				$("#state").html("Pause");
+				$("#pauseLogo").hide(0);
+				$("#playLogo").show();
+				playIndex.state=0; 
+			}
+		}
+
+		function playWithVid(vid){
+			player.loadVideoById({videoId:vid});
+			//player.seekTo($("#startTime").val());
+			player.seekTo(playIndex.startTime); 
+			player.playVideo();
+		}
+		function playWithConf(){
+			/*
+			player.loadVideoById({
+				videoId:$("#vid").val(), 
+				startSeconds:$("#startTime").val(), 
+				endSeconds:$("#endTime").val()
+			});
+			*/
+			//player.seekTo($("#startTime").val());
+			player.seekTo(playIndex.startTime); 
+			player.playVideo();
+		}
+
+		function onReady(event) {
+			console.log("onReady");
+			function logDuration() {
+				var videoData=player.getVideoData();
+				if(videoData==null){
+					playIndex.title=""; 
+				}else{
+					playIndex.title=player.getVideoData().title; 
+				}
+				var positionVal=parseFloat(player.getCurrentTime());
+				var durationVal=parseInt(player.getDuration());
+				playIndex.position=positionVal; 
+				playIndex.duration=durationVal; 
+				/*
+				var startTimeVal=$("#startTime").val(); 
+				var endTimeVal=$("#endTime").val(); 
+				*/
+				var startTimeVal=playIndex.startTime; 
+				var endTimeVal=parseFloat(playIndex.endTime);
+				if((endTimeVal>startTimeVal)
+				   &&(positionVal>=endTimeVal)){
+					//player.seekTo($("#startTime").val());
+					if(playIndex.repeat==0){
+						player.pauseVideo();
+						player.seekTo(playIndex.startTime);
+					}else{
+						player.seekTo(playIndex.startTime);
+					}
+					//player.seekTo(playIndex.startTime);
+					//playWithConf();
+				}
+				$("#title").text(playIndex.title);
+				$("#position").text(positionVal);
+				$("#duration").text(durationVal);
+				if(logDurationTimer) clearTimeout(logDurationTimer);
+				logDurationTimer=window.setTimeout(logDuration, 200);
+			}
+			logDuration();
+			console.log(event);
+			//playWithConf();
+			$("#vid").change(function(){
+				//playWithConf();
+				updatePlayIndex({
+					vid:parseYoutubeURL($("#vid").val()),
+					startTime:playIndex.startTime,
+					endTime:playIndex.endTime
+				});
+				playWithVid(playIndex.vid);
+				$("#vid").val(playIndex.vid);
+			});
+			$("#vid").click(function(){
+				$(this).select();
+			});
+			$("#repeat").click(function(){
+				if($(this).prop("checked")==true){
+					playIndex.repeat=1; 
+				}else{
+					playIndex.repeat=0; 
+				}
+				saveLocalStoragePIDnArray(playIndex);
+			}); 
+			$('#woootModal').on('hidden.bs.modal', function(){
+				player.pauseVideo();
+			})
+		}
+
+		function onError(event) {
+			console.log(event);
+		}
+
+		//window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
+		function onYouTubeIframeAPIReady() {
+			console.log("IFRAME API READY!");
+			player = new YT.Player("wooot", {
+				height: 270,
+				width: 300,
+				videoId: playIndex.vid,//"jExYHd1yyWc",
+				playerVars: {
+					//controls: 0,
+					iv_load_policy: 3 // Disables annotations.
+				},
+				events: {
+					"onReady": onReady,
+					"onStateChange": onPlayerStateChange,
+					"onPlaybackQualityChange": onPlaybackQualityChange,
+					"onError": onError
+				}
+			});
+		 };
+	</script>
+	<script language="javascript" type="text/javascript" src="js/bootstrap.js"></script>
+	<script language="javascript" type="text/javascript" src="js/bootstrap-editable.js"></script>
+	<script>
+		var sheetURL;
+		var spData = null;
+		var arrayData=[]; 
+		function composeSheetURL(id, no){
+			var url="https://spreadsheets.google.com/feeds/cells/"+id+"/"+no+"/public/values?alt=json-in-script&callback=doData"; 
+			return url; 
+		}
+		function doData(json){
+			spData = json.feed.entry;
+		}
+		function readData(){
+			var data=spData;
+			var rowData=[];
+			var row=0;
+			for (var r=0; r<data.length; r++){
+				var cell=data[r]["gs$cell"];
+				var val=cell["$t"];
+				if (cell.col==1) {
+					rowData=[];
+					arrayData.push(rowData);
+					row++;
+				}
+				rowData.push(val);
+			}
+		}
+	</script>
+	<script>
+		function supportLocalStorage() {
+			if(typeof(Storage) !== "undefined") {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function loadLocalStoragePID(){
+			if(supportLocalStorage()){
+				/*
+				localStorage.removeItem("playIndex");
+				localStorage.removeItem("playIndexArray");
+				*/
+				var localPIDStr=localStorage.getItem("playIndex");
+				var localPID=JSON.parse(localPIDStr);
+				var localPIDAStr=localStorage.getItem("playIndexArray");
+				var localPIDA=JSON.parse(localPIDAStr);
+				if(localPID){
+					playIndex.vid=localPID.vid; 
+					playIndex.startTime=parseFloat(0); 
+					playIndex.endTime=parseFloat(0);
+					if(localPID.repeat!==undefined){
+						playIndex.repeat=parseInt(localPID.repeat); 
+					}
+				}else{
+					playIndex.repeat=1; 
+				}
+				playIndex.vid=arrayData[1][0]; 
+				playIndex.startTime=parseFloat(arrayData[3][0]);
+				playIndex.endTime=parseFloat(arrayData[4][0]);
+				$("#startTime").val(playIndex.startTime);
+				$("#endTime").val(playIndex.endTime);
+				if(playIndex.repeat==1){
+					$("#repeat").prop("checked", true);
+				}else{
+					$("#repeat").prop("checked", false);
+				}
+				for(var i=0; i<arrayData[0].length; i++){
+					var indobj={};
+					var name=arrayData[0][i]; 
+					indobj.vid=arrayData[1][i]; 
+					indobj.startTime=parseFloat(arrayData[3][i]); 
+					indobj.endTime=parseFloat(arrayData[4][i]); 
+					indobj.title=arrayData[2][i]; 
+					indobj.note=arrayData[6][i]+arrayData[5][i]; 
+					playIndexArray[name]=indobj; 
+					addTagByNameX("cc", playIndexArray[name], name);
+				}
+				if(localPIDA){
+/*
+					playIndexArray=localPIDA; 
+					for(var name in localPIDA){
+						addTagByNameX("cc", playIndexArray[name], name);
+					}
+*/
+				}
+				
+			}
+		}
+
+		function saveLocalStoragePIDnArray(ind){
+			localStorage.setItem('playIndex', JSON.stringify(ind));
+			localStorage.setItem('playIndexArray',JSON.stringify(playIndexArray));
+		}
+
+		function debuginfo(msg){
+			$("#debug").html(msg);
+		}
+		$.fn.editable.defaults.mode = 'inline';
+		function addTagByNameX(ta, ind, randomName){
+			$("#"+ta).prepend("<div class='tagcontent' id="+randomName+">"+"</div>");
+			renderTagInfo(randomName, ind.vid, ind.startTime, ind.endTime, ind.title);
+			$("#"+randomName).prepend("<div id="+randomName+"Head class='row'></div>");
+			$("#"+randomName+"Head").prepend("<div id="+randomName+"ThumbNail class='col-sm-6'></div>");
+			createThumbNail(randomName+"ThumbNail", ind.vid, randomName);
+			$("#"+randomName+"Img").click(function(){
+				updatePlayIndex(ind);
+				$("#startTime").val(playIndex.startTime);
+				$("#endTime").val(playIndex.endTime);
+				playWithConf();
+				$("#woootModal").modal("show");
+			});
+			$("#"+randomName).prepend("<div id="+randomName+"Text style='font-size:20px' class='page-header'></div>");
+			$("#"+randomName+"Text").append("<p>"+ind.note+"</p>"); 
+			$("#"+randomName).append("<br/>");
+		}
+
+	</script>
+	<script>
+		$(document).ready(function(){
+			sheetURL=composeSheetURL("1OUsdQ1d8y6HHzTTGwEmBSvzq9yKzFVHE7UtQl8Dr07E", 3);
+			$.getScript(sheetURL, function(data, textStatus){
+				readData();
+				loadLocalStoragePID();
+				tag.src = "https://www.youtube.com/iframe_api";
+				firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+				console.log(arrayData.length);
+				console.log(arrayData[0]);
+				console.log(arrayData[1]);
+				$("#all").show();
+				window.onYouTubeIframeAPIReady=onYouTubeIframeAPIReady; 
+			});
+		});
+	</script>
+  </body>
+</html>
+

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Expires" CONTENT="0"> 
+	<link rel="shortcut icon" href="img/favicon2.ico">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap-editable.css" rel="stylesheet">
+<!--
+	<link href="css/bootstrap-combined.min.css" rel="stylesheet">
+-->
+	<link href="css/carousel.css" rel="stylesheet">
+	<script language="javascript" type="text/javascript" src="js/jquery.js"></script>
+    <script src="js/react-with-addons.js"></script>
+    <script src="js/browser.min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/bootstrap.js"></script>
+	<script language="javascript" type="text/javascript" src="js/bootstrap-editable.js"></script>
+	<script language="javascript" type="text/javascript" src="js/googlesheet.js"></script>
+	<script language="javascript" type="text/babel" src="js/mybabel.js"></script>
+	<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js'></script>
+	<script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+	<script type="text/javascript" src="js/parsekey.js"></script>
+  </head>
+  <body role="document" id="all" style="display:none">
+	<div style="height:40px"></div>
+	<div class="container theme-showcase">
+		<br/>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+<!--
+				<div id="debug">debug info</div>
+-->
+				<div style="text-align:center">
+					<div id="wooot"></div>
+				</div>
+<!--
+				<div class="col-sm-12" style="height:100px;overflow:auto;display:none" id="cc"></div>
+-->
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+	<script>
+		var player;
+		var playIndexArray={}; 
+
+		var playIndex={
+			state:0,
+			//vid:"jExYHd1yyWc",
+			vid:parseYoutubeURL("https://www.youtube.com/watch?v=R5Ty4e2UVME"),
+			//vid:parseYoutubeURL("https://www.youtube.com/watch?v=jExYHd1yyWc"),
+			//R5Ty4e2UVME
+			title:"",
+			init:1,
+			startTime:0,
+			endTime:0,
+			position:0,
+			duration:0,
+			repeat:1
+		}; 
+		var logDurationTimer; 
+		function makeid()
+		{
+			var text = "";
+			var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+			for( var i=0; i < 10; i++ )
+				text += possible.charAt(Math.floor(Math.random() * possible.length));
+			return text;
+		}
+
+		function updatePlayIndex(ind){
+			if(ind.vid.match(playIndex.vid)==null){
+				player.loadVideoById({
+					videoId:ind.vid
+				});
+			}
+			playIndex.title=ind.title;
+			playIndex.vid=ind.vid;
+			playIndex.startTime=ind.startTime;
+			playIndex.endTime=ind.endTime;
+			saveLocalStoragePIDnArray(playIndex);
+		}
+
+		function parseYoutubeURL(url){
+			var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+			var match = url.match(regExp);
+			if (match && match[2].length == 11) {
+			  return match[2];
+			} else {
+			  //error
+			  return url; 
+			}
+		}
+
+		//tag.src = "https://www.youtube.com/iframe_api";
+		//firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		function onPlaybackQualityChange(event) {
+			console.log(event);
+		}
+
+		function onPlayerStateChange(event) {
+			console.log(event);
+			if (event.data == YT.PlayerState.PLAYING) {
+				$("#state").html("Playing");
+				$("#pauseLogo").show();
+				$("#playLogo").hide(0);
+				playIndex.state=1; 
+			}else{
+				$("#state").html("Pause");
+				$("#pauseLogo").hide(0);
+				$("#playLogo").show();
+				playIndex.state=0; 
+			}
+		}
+
+		function playWithVid(vid){
+			player.loadVideoById({videoId:vid});
+			//player.seekTo($("#startTime").val());
+			player.seekTo(playIndex.startTime); 
+			player.playVideo();
+		}
+		function playWithConf(){
+			/*
+			player.loadVideoById({
+				videoId:$("#vid").val(), 
+				startSeconds:$("#startTime").val(), 
+				endSeconds:$("#endTime").val()
+			});
+			*/
+			//player.seekTo($("#startTime").val());
+			player.seekTo(playIndex.startTime); 
+			player.playVideo();
+		}
+
+		var QueryString = function () {
+			// This function is anonymous, is executed immediately and 
+			// the return value is assigned to QueryString!
+			var query_string = {};
+			var query = window.location.search.substring(1);
+			var vars = query.split("&");
+			for (var i=0;i<vars.length;i++) {
+				var pair = vars[i].split("=");
+				// If first entry with this name
+				if (typeof query_string[pair[0]] === "undefined") {
+					query_string[pair[0]] = decodeURIComponent(pair[1]);
+					// If second entry with this name
+				} else if (typeof query_string[pair[0]] === "string") {
+					var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+					query_string[pair[0]] = arr;
+					// If third or later entry with this name
+				} else {
+					query_string[pair[0]].push(decodeURIComponent(pair[1]));
+				}
+			} 
+			return query_string;
+		};
+
+		function onReady(event, id) {
+			console.log("onReady");
+			//loadLocalStoragePID();
+			//$("#vid").val(playIndex.vid);
+			//console.log(event.target.getVideoData().title);
+
+			$("#"+id).on("changevid", function(e, data){
+				if(typeof(data) !== "undefined") {
+					console.log("changevid: "+data);
+					if(typeof(data.vid) !== "undefined") {
+						playWithVid(data.vid);
+					}
+				}
+			}); 
+
+			function logDuration(event, id) {
+				if(typeof(event) !== "undefined") {
+					this.target=event.target; 
+				}else{
+					console.log("error: for logDuration got event");
+					return; 
+				}
+				var videoData=this.target.getVideoData();
+				if(videoData==null){
+					playIndex.title=""; 
+				}else{
+					playIndex.title=videoData.title; 
+				}
+				$("#"+id).attr("video_title", playIndex.title);
+				var positionVal=parseFloat(this.target.getCurrentTime());
+				var durationVal=parseInt(this.target.getDuration());
+				playIndex.position=positionVal; 
+				playIndex.duration=durationVal; 
+				var startTimeVal=playIndex.startTime; 
+				var endTimeVal=parseFloat(playIndex.endTime);
+				if(playIndex.state==1){
+					if(((endTimeVal>startTimeVal)
+					   &&(positionVal>=endTimeVal))||(positionVal<startTimeVal)){
+						if(playIndex.init==1){
+							this.target.seekTo(playIndex.startTime);
+							playIndex.init=0; 
+						}else{
+							if(playIndex.repeat==0){
+								this.target.pauseVideo();
+								this.target.seekTo(playIndex.startTime);
+							}else{
+								this.target.seekTo(playIndex.startTime);
+							}
+						}
+					}
+				}
+				$("#title").text(playIndex.title);
+				$("#position").text(positionVal);
+				$("#duration").text(durationVal);
+				if(logDurationTimer) clearTimeout(logDurationTimer);
+				logDurationTimer=window.setTimeout(function(){ logDuration(event, id) }, 200);
+			}
+			logDuration(event, id);
+			console.log(event);
+			//playWithConf();
+			$("#vid").change(function(){
+				//playWithConf();
+				updatePlayIndex({
+					vid:parseYoutubeURL($("#vid").val()),
+					startTime:playIndex.startTime,
+					endTime:playIndex.endTime
+				});
+				playWithVid(playIndex.vid);
+				$("#vid").val(playIndex.vid);
+			});
+			$("#vid").click(function(){
+				$(this).select();
+			});
+			$("#startTime").change(function(){changeStartTime($(this).val());});
+			$("#startTime").keypress(function(e){if(e.which==13){changeStartTime($(this).val());}}); 
+			function changeStartTime(s){
+				var startTimeVal=parseFloat(s); 
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:startTimeVal,
+					endTime:playIndex.endTime
+				});
+				playWithConf();
+			}
+			$("#startTimeLShift").click(function(){
+				var startTimeVal=parseFloat($("#startTime").val()); 
+				startTimeVal-=0.1; 
+				startTimeVal=parseFloat(startTimeVal);
+				if(startTimeVal<0) startTimeVal=0;
+				$("#startTime").val(startTimeVal);
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:startTimeVal,
+					endTime:playIndex.endTime
+				});
+				playWithConf();
+			});
+			$("#startTimeRShift").click(function(){
+				var startTimeVal=parseFloat($("#startTime").val()); 
+				startTimeVal=parseFloat(startTimeVal)+0.1; 
+				startTimeVal=parseFloat(startTimeVal);
+				$("#startTime").val(startTimeVal);
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:startTimeVal,
+					endTime:playIndex.endTime
+				});
+				playWithConf();
+			});
+			$("#endTime").change(function(){changeEndTime($(this).val());});
+			$("#endTime").keypress(function(e){if(e.which==13){changeEndTime($(this).val());}}); 
+			function changeEndTime(e){
+				var endTimeVal=e; 
+				endTimeVal=parseFloat(endTimeVal);
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:playIndex.startTime,
+					endTime:endTimeVal
+				});
+				//playWithConf();
+			}
+			$("#endTimeLShift").click(function(){
+				var endTimeVal=parseFloat($("#endTime").val());
+				endTimeVal-=0.1;
+				endTimeVal=parseFloat(endTimeVal);
+				if(endTimeVal<0) endTimeVal=0; 
+				$("#endTime").val(endTimeVal);
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:playIndex.startTime,
+					endTime:endTimeVal
+				});
+			});
+			$("#endTimeRShift").click(function(){
+				var endTimeVal=parseFloat($("#endTime").val());
+				endTimeVal=parseFloat(endTimeVal)+0.1;
+				endTimeVal=parseFloat(endTimeVal);
+				$("#endTime").val(endTimeVal);
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:playIndex.startTime,
+					endTime:endTimeVal
+				});
+			});
+			$("#aTrigger").click(function(){
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:parseFloat($("#position").html()),
+					endTime:playIndex.endTime
+				});
+				$("#startTime").val(playIndex.startTime);
+			});
+			$("#bTrigger").click(function(){
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:playIndex.startTime,
+					endTime:parseFloat($("#position").html())
+				});
+				$("#endTime").val(playIndex.endTime);
+			});
+			$("#cTrigger").click(function(){
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:0,
+					endTime:0
+				});
+				$("#startTime").val(0);
+				$("#endTime").val(0);
+			});
+			$("#rTrigger").click(function(){
+				playWithConf();
+				//player.seekTo(playIndex.startTime);
+				//player.seekTo($("#startTime").val());
+			});
+			$("#addTag").click(function(){
+				addTagByRandomName({
+					vid:playIndex.vid,
+					startTime:playIndex.startTime,
+					endTime:playIndex.endTime,
+					title:playIndex.title,
+					note:$("#tagText").val()
+				});
+				$("#addTagModal").modal("hide");
+			});
+			$("#nTrigger").click(function(){
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:parseFloat(playIndex.endTime),
+					endTime:0
+				});
+				$("#startTime").val(parseFloat(playIndex.startTime));
+				$("#endTime").val(0);
+				//player.seekTo(playIndex.startTime);
+				playWithConf();
+				//player.seekTo($("#startTime").val());
+			});
+			$("#playPause").click(function(){
+				if(playIndex.state==1){
+					player.pauseVideo();
+				}else{
+					player.playVideo();
+				}
+			});
+			$("#repeat").click(function(){
+				if($(this).prop("checked")==true){
+					console.log("repeat!!");
+					playIndex.repeat=1; 
+				}else{
+					console.log("unrepeat!!");
+					playIndex.repeat=0; 
+				}
+				saveLocalStoragePIDnArray(playIndex);
+			}); 
+		}
+
+		function onError(event) {
+			console.log(event);
+		}
+
+		//window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
+		function onYouTubeIframeAPIReady() {
+			console.log("IFRAME API READY!");
+			player = new YT.Player("wooot", {
+				height: 270,
+				width: 320,
+				videoId: playIndex.vid,//"jExYHd1yyWc",
+				playerVars: {
+					//controls: 0,
+					iv_load_policy: 3 // Disables annotations.
+				},
+				events: {
+					"onReady": function(event){
+						onReady(event, "wooot");
+					},
+					"onStateChange": onPlayerStateChange,
+					"onPlaybackQualityChange": onPlaybackQualityChange,
+					"onError": onError
+				}
+			});
+		 };
+	</script>
+	<script>
+		function supportLocalStorage() {
+			if(typeof(Storage) !== "undefined") {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		var hashString, hashData;
+		function loadLocalStoragePID(){
+			console.log(QueryString());
+			//if(window.location.hash!==""){
+			if(true){
+				//var hashString=window.location.hash.substring(1);
+				var q=QueryString();
+				var hashString=q.tag; 
+				
+				console.log("hash: "+hashString);
+				try{
+					hashData=$.parseJSON(hashString);
+					hashData=hashData[0];
+					if(("vid" in hashData)){
+						if(typeof hashData.startTime == "undefined"){
+							hashData.startTime=0; 
+						}
+						if(typeof hashData.endTime == "undefined"){
+							hashData.endTime=0; 
+						}
+						if(typeof hashData.repeat == "undefined"){
+							hashData.repeat=1; 
+						}
+						if(typeof hashData.text !== "undefined"){
+							document.title=hashData.text;
+						}
+					}
+				}catch(err){
+					console.log("an error occured");
+				}
+			}
+			if(supportLocalStorage()){
+				var localPIDStr=localStorage.getItem("playIndex");
+				var localPID=JSON.parse(localPIDStr);
+				var localPIDAStr=localStorage.getItem("playIndexArray");
+				var localPIDA=JSON.parse(localPIDAStr);
+				if(hashData){
+				//if((hashData.hasOwnProperty("vid")) == true){
+					playIndex.vid=hashData.vid; 
+					playIndex.startTime=parseFloat(hashData.startTime); 
+					playIndex.endTime=parseFloat(hashData.endTime);
+					playIndex.repeat=hashData.repeat; 
+					console.log(playIndex.startTime);
+				}
+			}
+		}
+
+		function saveLocalStoragePIDnArray(ind){
+			localStorage.setItem('playIndex', JSON.stringify(ind));
+			localStorage.setItem('playIndexArray',JSON.stringify(playIndexArray));
+		}
+
+		function debuginfo(msg){
+			$("#debug").html(msg);
+		}
+
+		function addTagByRandomName(ind){
+			var randomName=makeid();
+			var indobj={};
+			indobj.vid=ind.vid; 
+			indobj.startTime=ind.startTime; 
+			indobj.endTime=ind.endTime; 
+			indobj.title=ind.title; 
+			indobj.note=ind.note; 
+			playIndexArray[randomName]=indobj; 
+			updatePlayIndex(ind);
+			addTagByNameX("tagArea", ind, randomName);
+			$("#tagText").val("");
+			saveLocalStoragePIDnArray(ind);
+		}
+		$.fn.editable.defaults.mode = 'inline';
+		function addTagByName(ta, ind, randomName){
+			$("#"+ta).prepend("<div class='tagcontent' id="+randomName+">"+"</div>");
+			renderTagInfo(randomName, ind.vid, ind.startTime, ind.endTime, ind.title);
+			$("#"+randomName).prepend("<div id="+randomName+"ThumbNail></div>");
+			createThumbNail(randomName+"ThumbNail", ind.vid);
+			$("#"+randomName).append("<span id="+randomName+"PlayDiv class=''></span>");
+			//$("#"+randomName).append("<span id="+randomName+"PauseDiv class=''></span>");
+			$("#"+randomName).append("<span id="+randomName+"RemoveDiv class=''></span>");
+			//$("#"+randomName).append("<span id="+randomName+"EditDiv class=''></span>");
+			$("#"+randomName).append("<div>Note:</div>");
+			createTagBtn(randomName+"PlayDiv", randomName+"Play", "glyphicon glyphicon-play", {});
+			//createTagBtn(randomName+"PauseDiv", randomName+"Pause", "glyphicon glyphicon-pause", {});
+			createTagBtn(randomName+"RemoveDiv", randomName+"Remove", "glyphicon glyphicon-remove", {});
+			//createTagBtn(randomName+"EditDiv", randomName+"Edit", "glyphicon glyphicon-pencil", {});
+			$("#"+randomName+"Play").click(function(){
+				updatePlayIndex(playIndexArray[randomName]);
+				$("#startTime").val(playIndex.startTime);
+				$("#endTime").val(playIndex.endTime);
+				playWithConf();
+				$("#tagListModal").modal("hide");
+			});
+/*
+			$("#"+randomName+"Pause").click(function(){
+				updatePlayIndex(playIndexArray[randomName]);
+				$("#startTime").val(playIndex.startTime);
+				$("#endTime").val(playIndex.endTime);
+				player.pauseVideo();
+			});
+*/
+			$("#"+randomName+"Remove").click(function(){
+				$("#"+randomName).remove();
+				delete playIndexArray[randomName];
+				saveLocalStoragePIDnArray(playIndex);
+			});
+/*
+			$("#"+randomName+"Edit").click(function(){
+				var inputObj=document.getElementById(randomName+"TextInput");
+				if(inputObj!==null){
+					var inputVal=$("#"+randomName+"TextInput").val();
+					$("#"+randomName+"Text").html("");
+					//$("#"+randomName+"Text").append(inputVal);
+					$("#"+randomName+"Text").append("<div id="+randomName+"noteVal class='noteVal'>"+inputVal+"</div>");
+					playIndexArray[randomName].note=inputVal; 
+					saveLocalStoragePIDnArray(playIndex);
+					return; 
+				}
+				var noteVal=$("#"+randomName+"noteVal").html();
+				$("#"+randomName+"Text").html("");
+				$("#"+randomName+"Text").append("<input type='text' class='form-control' id="+randomName+"TextInput ></input>");
+				$("#"+randomName+"TextInput").val(noteVal).focus();
+				$("#"+randomName+"TextInput").change(function(){
+					var inputVal=$(this).val();
+					$("#"+randomName+"Text").html("");
+					//$("#"+randomName+"Text").append(inputVal);
+					$("#"+randomName+"Text").append("<div id="+randomName+"noteVal class='noteVal'>"+inputVal+"</div>");
+					playIndexArray[randomName].note=inputVal; 
+					saveLocalStoragePIDnArray(playIndex);
+				});
+				$("#"+randomName+"TextInput").keypress(function(e){
+					if(e.which==13){
+						var inputVal=$(this).val();
+						$("#"+randomName+"Text").html("");
+						//$("#"+randomName+"Text").append(inputVal);
+						$("#"+randomName+"Text").append("<div id="+randomName+"noteVal class='noteVal'>"+inputVal+"</div>");
+						playIndexArray[randomName].note=inputVal; 
+						saveLocalStoragePIDnArray(playIndex);
+					}
+				}); 
+			});
+*/
+			$("#"+randomName).append("<div id="+randomName+"Text style='font-size:20px'></div>");
+/*
+			$("#"+randomName+"Text").append("<div id="+randomName+"noteVal class='noteVal'>"+$("#tagText").val()+"</div>");
+*/
+			$("#"+randomName+"Text").append("<a href='#"+randomName+"noteVal' id='"+randomName+"noteVal'>"+$("#tagText").val()+"</a>"); 
+			$('#'+randomName+'noteVal').editable({
+				type:  'text',
+				pk:    1,
+				name:  'notes',
+				title: 'Enter Notes',
+				inputclass:"form-control",
+				enablefocus:true,
+				emptytext:"Enter Your Notes",
+				success: function(response, newValue) {
+					playIndexArray[randomName].note=newValue; 
+					saveLocalStoragePIDnArray(playIndex);
+					return; 
+				}
+			});
+			playIndexArray[randomName].note=$("#tagText").val();
+			$("#tagText").val("");
+			$("#"+randomName).append("<br/>");
+		}
+		function addTagByNameX(ta, ind, randomName){
+			$("#"+ta).prepend("<div class='tagcontent' id="+randomName+">"+"</div>");
+			renderTagInfo(randomName, ind.vid, ind.startTime, ind.endTime, ind.title);
+			$("#"+randomName).prepend("<div id="+randomName+"ThumbNail></div>");
+			createThumbNail(randomName+"ThumbNail", ind.vid);
+			$("#"+randomName).append("<span id="+randomName+"PlayDiv class=''></span>");
+			$("#"+randomName).append("<span id="+randomName+"RemoveDiv class=''></span>");
+			$("#"+randomName).append("<div>Note:</div>");
+			createTagBtn(randomName+"PlayDiv", randomName+"Play", "glyphicon glyphicon-play", {});
+			createTagBtn(randomName+"RemoveDiv", randomName+"Remove", "glyphicon glyphicon-remove", {});
+			$("#"+randomName+"Play").click(function(){
+				updatePlayIndex(ind);
+				$("#startTime").val(playIndex.startTime);
+				$("#endTime").val(playIndex.endTime);
+				playWithConf();
+				$("#tagListModal").modal("hide");
+			});
+			$("#"+randomName+"Remove").click(function(){
+				$("#"+randomName).remove();
+				delete playIndexArray[randomName];
+				saveLocalStoragePIDnArray(playIndex);
+			});
+			$("#"+randomName).append("<div id="+randomName+"Text style='font-size:20px'></div>");
+			$("#"+randomName+"Text").append("<a href='#"+randomName+"noteVal' id='"+randomName+"noteVal'>"+ind.note+"</a>"); 
+			$('#'+randomName+'noteVal').editable({
+				type:  'text',
+				pk:    1,
+				name:  'notes',
+				title: 'Enter Notes',
+				inputclass:"form-control",
+				enablefocus:true,
+				emptytext:"Enter Your Notes",
+				success: function(response, newValue) {
+					ind.note=newValue; 
+					saveLocalStoragePIDnArray(playIndex);
+					return; 
+				}
+			});
+			$("#"+randomName).append("<br/>");
+		}
+
+		$(document).ready(function(){
+			loadLocalStoragePID();
+			$("#all").show();
+			window.onYouTubeIframeAPIReady=onYouTubeIframeAPIReady; 
+			$.getScript("https://www.youtube.com/iframe_api", function(data, textStatus){
+				console.log("youtube script get!!");
+			});
+/*
+			sheetURL=composeSheetURL("1OUsdQ1d8y6HHzTTGwEmBSvzq9yKzFVHE7UtQl8Dr07E", 2);
+			$.getScript(sheetURL, function(data, textStatus){
+				readData();
+				console.log(arrayData.length);
+				console.log(arrayData[0]);
+				console.log(arrayData[1]);
+				createVideoList(arrayData[0], arrayData[1]);
+				$("#all").show();
+				window.onYouTubeIframeAPIReady=onYouTubeIframeAPIReady; 
+				$.getScript("https://www.youtube.com/iframe_api", function(data, textStatus){
+					console.log("youtube script get!!");
+				});
+			});
+*/
+		});
+	</script>
+  </body>
+</html>
+

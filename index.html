@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<!--
+<html lang="en">
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Expires" CONTENT="0"> 
+	<meta name="Description" content="Editor : Ralph Wang , 
+Type : Youtube Repeater">
+
+	<meta property="og:title" content="Tubetag (Youtube Repeater)"/> 
+	<meta property="og:type" content="video"/> 
+	<meta property="og:url" content="http://enhanceralph.github.io/tubetag/"/> 
+	<meta property="og:image" content="http://scontent-tpe1-1.xx.fbcdn.net/hphotos-xfl1/v/t1.0-9/1620456_829941687123605_4711965399330171645_n.png?oh=0f7ed99e437d8a21db743b43751791e7&oe=5718F2E1"/> 
+	<meta property="og:site_name" content="Tubetag"/> 
+	<meta property="fb:admins" content="hsuehshih"/> 
+	<meta property="og:description" content="A website for you to repeat any section in youtube video, so that you can enhance your language listening or any fun..."/>
+
+    <title>TubeTag v0.1</title>
+	<link rel="alternate" href="http://enhanceralph.github.io/tubetag/" hreflang="x-default" />
+	<link rel="shortcut icon" href="img/favicon2.ico">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap-editable.css" rel="stylesheet">
+<!--
+	<link href="css/bootstrap-combined.min.css" rel="stylesheet">
+-->
+	<link href="css/carousel.css" rel="stylesheet">
+	<script language="javascript" type="text/javascript" src="js/jquery.js"></script>
+    <script src="js/react-with-addons.js"></script>
+    <script src="js/browser.min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/bootstrap.js"></script>
+	<script language="javascript" type="text/javascript" src="js/bootstrap-editable.js"></script>
+	<script language="javascript" type="text/javascript" src="js/googlesheet.js"></script>
+	<script language="javascript" type="text/babel" src="js/mybabel.js"></script>
+	<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js'></script>
+	<script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+	<script type="text/javascript" src="js/parsekey.js"></script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '773209436141584',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+  </head>
+  <body role="document" id="all" style="display:none">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="http://enhanceralph.github.io/tubetag/">Tubetag</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="http://enhanceralph.github.io/tubetag/">AB Repeater</a></li>
+					<li><a href="http://enhanceralph.github.io/tubetag/tags.html">Tags Area</a></li>
+					<li><a href="https://www.facebook.com/tubetag">FB</a></li>
+<!--
+					<li class="dropdown"><a href="#about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">This project</a></li>
+							<li><a href="#">Editor</a></li>
+							<li><a href="#">Something else here</a></li>
+						</ul>
+					</li>
+-->
+					<li><a href="http://enhanceralph.github.io/tubetag/contact.html">Contact</a></li>
+<!--
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					</li>
+-->
+				</ul>
+<!--
+				<ul class="nav navbar-nav navbar-right top-nav">
+					<li class="dropdown"><a href="#about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog" style="width:20px"></span><span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">XXXX</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+						</ul>
+					</li>
+				<ul/>
+-->
+			</div>
+		</div>
+	</nav>
+	<div style="height:40px"></div>
+	<div class="container theme-showcase" itemscope itemtype="http://schema.org/YoutubeRepeater">
+		<br/>
+		<div class="row">
+			<div class="col-lg-2 col-md-1 hidden-xs"></div>
+			<div class="col-lg-8 col-md-10 col-xs-12" style="text-align:center">
+				<h1 itemprop="name">Tubetag - Youtube Repeater</h1>
+			</div>
+			<div class="col-lg-2 col-md-1 hidden-xs"></div>
+		</div>
+		<div class="row">
+			<div class="col-lg-2 col-md-1 hidden-xs"></div>
+			<div class="col-lg-8 col-md-10 col-xs-12" id="wooot_outer" itemprop="youtuberepeater">
+<!--
+				<div id="debug">debug info</div>
+-->
+				<div style="text-align:center">
+<!--
+					<label> <input id="query" value='cats' type="text"/><button id="search-button" onclick="keyWordsearch()"><span class="glyphicon glyphicon-search"></span></button></label> 
+					<ul id="results" style="display:none"></ul>
+					<script>
+					function keyWordsearch(){
+						gapi.client.setApiKey('AIzaSyA_rexZcCygqXndR15sZfnOE2NI5lzxRnA');
+						gapi.client.load('youtube', 'v3', function(){
+							makeRequest();
+						});
+					}
+					function makeRequest(){
+						var q = $('#query').val();
+						var request = gapi.client.youtube.search.list({
+							q: q,
+							part: 'snippet', 
+							maxResults: 10
+						});
+						request.execute(function(response)  { 
+							$('#results').empty()
+							var srchItems = response.result.items;                      
+							$.each(srchItems, function(index, item){
+								vidTitle = item.snippet.title;  
+								vidThumburl =  item.snippet.thumbnails.default.url;                 
+								vidThumbimg = '<pre><img id="thumb" src="'+vidThumburl+'" alt="No  Image  Available." style="width:204px;height:128px"></pre>';                   
+								$('#results').append('<pre>' + vidTitle + vidThumbimg +   '</pre>');                      
+							})  
+						})  
+					}
+					</script> 
+					<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+-->
+					<div id="wooot"></div>
+					<div
+						class="fb-like"
+						data-share="true"
+						data-width="450"
+						data-show-faces="true">
+					</div>
+				</div>
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						Video List
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="dropdownMenu1list">
+<!--
+						<li><a href="#video1" id="video1"></a></li>
+						<li><a href="#video2" id="video2"></a></li>
+						<li><a href="#video3" id="video3"></a></li>
+						<li><a href="#video4" id="video4">Separated link</a></li>
+-->
+					</ul>
+				</div>
+				<div class="row">
+					<div id="transcript" class="col-xs-12" style="height:100px;overflow-y:scroll;background:black;display:none">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="usr">Youtube URL or ID:</label>
+					<input type="text" class="form-control" id="vid" value="https://www.youtube.com/watch?v=jExYHd1yyWc">
+				</div>
+<!--
+				<div class="col-sm-12" style="height:100px;overflow:auto;display:none" id="cc"></div>
+-->
+			</div>
+			<div class="col-lg-2 col-md-1 hidden-xs"></div>
+		</div>
+		<div class="row">
+			<div class="col-lg-2 col-md-1"></div>
+			<div class="col-lg-8 col-md-10">
+				<div>
+					<button type="button" class="btn btn-default btn-lg" id="playPause">
+						<span class="glyphicon glyphicon-play" id="playLogo" style="width:15px"></span>
+						<span class="glyphicon glyphicon-pause" id="pauseLogo" style="width:15px;display:none"></span>
+					</button>
+					<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#help">?</button>
+					<button type="button" class="btn btn-lg btn-primary" id="aTrigger">A</button>
+					<button type="button" class="btn btn-lg btn-success" id="bTrigger">B</button>
+					<button type="button" class="btn btn-lg btn-warning" id="cTrigger">C</button>
+					<button type="button" class="btn btn-lg btn-danger" id="rTrigger">
+						<span class="glyphicon glyphicon-step-backward" style="width:15px"></span>
+					</button>
+					<button type="button" class="btn btn-lg btn-danger" id="nTrigger">
+						<span class="glyphicon glyphicon-fast-forward" style="width:15px"></span>
+					</button>
+					<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#playerInfo">
+						<span class="glyphicon glyphicon-info-sign" style="width:15px"></span>
+					</button>
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#searchModal" id="searchModalBtn">
+						<span class="glyphicon glyphicon-search" style="width:15px"></span>
+					</button>
+					<!-- Search Modal -->
+					<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="searchModalLabel">Search</h4>
+								</div>
+								<div class="modal-body">
+									<div class="input-group">
+										<input id="query" type="text" class="form-control" placeholder="Search">
+										<div class="input-group-btn">
+											<button class="btn btn-default" type="submit" id="search-button" onclick="keyWordsearch()">
+												<i class="glyphicon glyphicon-search"></i>
+											</button>
+										</div>
+									</div>
+									<ul id="results" style=""></ul>
+									<script>
+									function keyWordsearch(){
+										gapi.client.setApiKey('AIzaSyA_rexZcCygqXndR15sZfnOE2NI5lzxRnA');
+										gapi.client.load('youtube', 'v3', function(){
+											makeRequest();
+										});
+									}
+									$('#query').keypress(function(e){
+										if(e.which==13){
+											keyWordsearch();
+										}
+									});
+									function searchItemPlay(vid){
+										$("#vid").val(vid);
+										updatePlayIndex({
+											vid:parseYoutubeURL($("#vid").val()),
+											startTime:0,
+											endTime:0
+										});
+										$("#startTime").val(0);
+										$("#endTime").val(0);
+										$("#searchModal").modal("hide");
+									}
+									function makeRequest(){
+										var q = $('#query').val();
+										var request = gapi.client.youtube.search.list({
+											q: q,
+											part: 'snippet', 
+											maxResults: 50
+										});
+										request.execute(function(response)  { 
+											$('#results').empty()
+											var srchItems = response.result.items;                      
+											$.each(srchItems, function(index, item){
+												vidTitle = item.snippet.title;// + "(" + item.id.videoId  + ")";  
+												vidThumburl =  item.snippet.thumbnails.default.url;                 
+												//vidThumbimg = '<div onclick="searchItemPlay(\''+item.id.videoId+'\')"><img id="thumb'+item.id.videoId+'" src="'+vidThumburl+'" alt="No  Image  Available." style="width:204px;height:128px"></div>'; 
+												vidThumbimg = '<div style=""><img id="thumb'+item.id.videoId+'" src="'+vidThumburl+'" alt="No  Image  Available." style="width:204px;height:128px;cursor:pointer;"></div>'; 
+												$('#results').append('<div>' + vidTitle + vidThumbimg +   '</div>');
+												$('#thumb'+item.id.videoId).click(function(){
+													searchItemPlay(item.id.videoId);
+												});
+											})  
+										})  
+									}
+									</script> 
+									<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#addTagModal" id="addTagModalBtn">
+						<span class="glyphicon glyphicon-pencil" style="width:15px"></span>
+					</button>
+					<!-- Add Tag Modal -->
+					<div class="modal fade" id="addTagModal" tabindex="-1" role="dialog" aria-labelledby="addTagModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="addTagModalLabel">Add Tag</h4>
+								</div>
+								<div class="modal-body">
+									<div id="tagInfo"></div>
+									<div class="form-group">
+										<label for="tagText">Notes:</label>
+										<input class="form-control" id="tagText" type="text">
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button type="button" class="btn btn-primary" id="addTag">Add</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#tagListModal" id="tagListModalBtn">
+						<span class="glyphicon glyphicon-list" style="width:15px"></span>
+					</button>
+					<!-- Tag List Modal -->
+					<div class="modal fade" id="tagListModal" tabindex="-1" role="dialog" aria-labelledby="tagListModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="tagListModalLabel">Tag List</h4>
+								</div>
+								<div class="modal-body">
+									<div id="tagArea"></div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" id="repeat" checked=true>Repeat
+						</label>
+					</div>
+
+				</div>
+				<div id="help" class="collapse">
+					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							<li data-target="#myCarousel" data-slide-to="1" class=""></li>
+							<li data-target="#myCarousel" data-slide-to="2" class=""></li>
+						</ol>
+						<div class="carousel-inner" role="listbox">
+							<div class="item active">
+								<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+								<div class="container">
+									<div class="carousel-caption">
+										<h1>Tag any section of youtube video. </h1>
+										<p>Not only you can repeat any section of youtube video, you can also add note for it. </p>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<img src="data:image/gif;base64,R0lGODlhAQABAIAAAGZmZgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+								<div class="container">
+									<div class="carousel-caption">
+										<h1>Tag Area</h1>
+										<p>Right now this is a testing area, and I will add account machanism for user to add their own tags. </p>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<img src="data:image/gif;base64,R0lGODlhAQABAIAAAFVVVQAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+								<div class="container">
+									<div class="carousel-caption">
+										<h1>It's a free AB repeater for language learning...</h1>
+										<p>Copy and paste the youtube video URL link into this website, and then you can repeat any section of this video. </p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> 
+						<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+					</div>
+					<p>This is a AB repeater, and you can follow the instruction as below: </p>
+					<p>A: Tag start position</p>
+					<p>B: Tag end position</p>
+					<p>C: Clear start and end position</p>
+				</div>
+				<div id="playerInfo" class="collapse in">
+					<table class="table">
+						<thead>
+							<tr><th>Info</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>State: </td><td><span id="state"></span></td></tr>
+							<tr><td>Position: </td><td><span id="position"></span></td></tr>
+							<tr><td>Duration: </td><td><span id="duration"></span></td></tr>
+							<tr><td>Tag Link: </td><td><a target="_blank" id="taglink"></a></td></tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="row">
+					<div class="col-xs-4" style="text-align:center">
+						<label for="startTimeLShift">Left Shift</label>
+						<div>
+							<button type="button" class="btn btn-primary" id="startTimeLShift">-</button>
+						</div>
+					</div>
+					<div class="col-xs-4" style="text-align:center">
+						<label for="startTime">Start Time(s)</label>
+						<input class="form-control" id="startTime" type="text">
+					</div>
+					<div class="col-xs-4" style="text-align:center">
+						<label for="startTimeRShift">Right Shift</label>
+						<div>
+							<button type="button" class="btn btn-primary" id="startTimeRShift">+</button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4" style="text-align:center">
+						<label for="endTimeLShift">Left Shift</label>
+						<div>
+							<button type="button" class="btn btn-success" id="endTimeLShift">-</button>
+						</div>
+					</div>
+					<div class="col-xs-4" style="text-align:center">
+						<label for="endTime">End Time(s)</label>
+						<input class="form-control" id="endTime" type="text">
+					</div>
+					<div class="col-xs-4" style="text-align:center">
+						<label for="endTimeLShift">Right Shift</label>
+						<div>
+							<button type="button" class="btn btn-success" id="endTimeRShift">+</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-1 hidden-xs"></div>
+		</div>
+	</div>
+	<div id="test">
+	</div>
+	<script>
+	</script>
+	<script>
+        var ThumbNail = React.createClass({displayName: "ThumbNail",
+            getInitialState: function() {
+                return null; 
+            },
+            handleChange:function(){
+            },
+            componentDidMount: function() {
+            },
+            render: function() {
+                var imgSrc="http://img.youtube.com/vi/"+this.props.vid+"/1.jpg"; 
+                return (
+                    React.createElement("div", {className: "row"}, 
+                        React.createElement("div", {className: "col-xs-6 col-md-3"}, 
+                            React.createElement("a", {href: "#", class: "thumbnail"}, 
+                                React.createElement("img", {src: imgSrc, alt: "180x100%", "data-holder-rendered": "true"})
+                            )
+                        )
+                    )
+                );
+            }
+        });
+        function createThumbNail(div, vid){
+            var divObj=document.getElementById(div); 
+            React.render(
+                React.createElement(ThumbNail, {vid: vid}),
+                divObj
+            );
+        }
+        var TagInfo = React.createClass({displayName: "TagInfo",
+            getInitialState: function() {
+                return null;
+            },
+            handleChange:function(){
+            },
+            componentDidMount: function() {
+            },
+            render: function() {
+                return (
+                    React.createElement("table", {className: "table"}, 
+                        React.createElement("thead", null, 
+                            React.createElement("tr", null, React.createElement("th", null, "Info: "))
+                        ), 
+                        React.createElement("tbody", null, 
+                            React.createElement("tr", null, React.createElement("td", null, "Title: "), React.createElement("td", null, this.props.title)), 
+                            React.createElement("tr", null, React.createElement("td", null, "Video ID: "), React.createElement("td", null, this.props.vid)), 
+                            React.createElement("tr", null, React.createElement("td", null, "Start Time: "), React.createElement("td", null, this.props.startTime)), 
+                            React.createElement("tr", null, React.createElement("td", null, "End Time: "), React.createElement("td", null, this.props.endTime))
+                        )
+                    )
+                );
+            }
+        });
+        var PlayerInfo = React.createClass({displayName: "PlayerInfo",
+            getInitialState: function() {
+                return null;
+            },
+            handleChange:function(){
+            },
+            componentDidMount: function() {
+            },
+            render: function() {
+                return (
+                    React.createElement("table", {className: "table"}, 
+                        React.createElement("thead", null, 
+                            React.createElement("tr", null, React.createElement("th", null, "Player Info"))
+                        ), 
+                        React.createElement("tbody", null, 
+                            React.createElement("tr", null, React.createElement("td", null, "State: "), React.createElement("td", null, React.createElement("span", {id: "state"}))), 
+                            React.createElement("tr", null, React.createElement("td", null, "Title: "), React.createElement("td", null, React.createElement("span", {id: "title"}))), 
+                            React.createElement("tr", null, React.createElement("td", null, "Position: "), React.createElement("td", null, React.createElement("span", {id: "position"}))), 
+                            React.createElement("tr", null, React.createElement("td", null, "Duration: "), React.createElement("td", null, React.createElement("span", {id: "duration"}))),
+                            React.createElement("tr", null, React.createElement("td", null, "Tag Link: "), React.createElement("td", null, React.createElement("a", {id: "taglink", target: "_blank"})))
+                        )
+                    )
+                );
+            }
+        });
+        function renderTagInfo(div, vid, start, end, title){
+            var divObj=document.getElementById(div);
+            React.render(
+                React.createElement(TagInfo, {vid: vid, startTime: start, endTime: end, title:title}),
+                divObj
+            );
+        }
+        $("#addTagModalBtn").click(function(e){
+            renderTagInfo("tagInfo", playIndex.vid, playIndex.startTime, playIndex.endTime, playIndex.title);
+        }); 
+        React.render(
+            React.createElement(PlayerInfo, null),
+            document.getElementById("playerInfo")
+        );
+
+        var TagBtn = React.createClass({displayName: "TagBtn",
+            getInitialState: function() {
+                return null; 
+            },
+            handleChange:function(){
+            },
+            componentDidMount: function() {
+            },
+            render: function() {
+                var spanstylex=this.props.spanstyle;
+                return (
+                    React.createElement("button", {type: "button", className: "btn btn-default btn-lg", id: this.props.id}, 
+                        React.createElement("span", {className: this.props.className, style: spanstylex})
+                    )
+                );
+            }
+        });
+        function createTagBtn(div, id, c, s){
+            var style=s; 
+            var divObj=document.getElementById(div); 
+            React.render(
+                React.createElement(TagBtn, {id: id, className: c, spanstyle: s}),
+                divObj
+            );
+        }
+		//createTagBtn("test", "xxx", "glyphicon glyphicon-pause", {});
+	</script>
+	<script>
+		var player;
+		var playIndexArray={}; 
+
+		var playIndex={
+			state:0,
+			//vid:"jExYHd1yyWc",
+			//vid:parseYoutubeURL("https://www.youtube.com/watch?v=R5Ty4e2UVME"),
+			vid:parseYoutubeURL("https://www.youtube.com/watch?v=zzfCVBSsvqA"),
+			//vid:parseYoutubeURL("https://www.youtube.com/watch?v=jExYHd1yyWc"),
+			//R5Ty4e2UVME
+			title:"",
+			init:1,
+			startTime:0,
+			endTime:0,
+			position:0,
+			duration:0,
+			repeat:1
+		}; 
+		var logDurationTimer; 
+		function makeid()
+		{
+			var text = "";
+			var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+			for( var i=0; i < 10; i++ )
+				text += possible.charAt(Math.floor(Math.random() * possible.length));
+			return text;
+		}
+
+		var scriptArray=[]; 
+		var scriptIndex=0; 
+		function loadTranscript(){
+			$("#transcript").html("");
+			$("#transcript").hide(0);
+			$.ajax({
+			    url:'http://www.youtube.com/api/timedtext?v='+playIndex.vid+'&lang=en',
+				type: 'GET',
+				dataType: 'xml',
+				timeout: 1000,
+				crossDomain: true,
+				error: function(xml){
+					//alert("err: "+xml);
+				},
+				success: function(xml){
+					scriptIndex=0; 
+					scriptArray=[]; 
+					$(xml).find("text").each(function(i){
+						var startTime=0, dur=0;
+						var endTime=0; 
+						startTime=parseFloat($(this).attr("start")); 
+						dur=parseFloat($(this).attr("dur"));
+						startTime=parseFloat(startTime.toFixed(3));
+						dur=parseFloat(dur.toFixed(3));
+						endTime=startTime+dur; 
+						endTime=parseFloat(endTime);
+						endTime=parseFloat(endTime.toFixed(3));
+						scriptArray.push(endTime);
+						$("#transcript").append('<div id="script'+i+'"></div>');
+						$("#script"+i).append('<button class="btn btn-default" id="playscript'+i+'">');
+						$("#playscript"+i).append('<i class="glyphicon glyphicon-play"></i>');
+						$("#playscript"+i).click(function(){
+							$("#script"+scriptIndex).css("background","");
+							//console.log(startTime+","+endTime);
+/*
+							updatePlayIndex({
+								vid:playIndex.vid,
+								startTime:startTime,
+								endTime:0
+							});
+							$("#startTime").val(startTime);
+							$("#endTime").val(0);
+							playWithConf();
+*/
+							scriptIndex=0; 
+							$("div[id^='script']").each(function(){
+								$(this).css("background","");
+							}); 
+							player.seekTo(startTime); 
+							player.playVideo();
+						});
+						$("#script"+i).append('&nbsp;<span id="scriptText'+i+'" style="font-size:20px;color:white"></span>');
+						//$("#transcript").append('<div id="script'+i+'><i class="glyphicon glyphicon-play"></i><span id="script'+i+'Text" style="font-size:20px;color:white"></span></div>');
+						$("#scriptText"+i).html($(this).text());
+						$("#transcript").show();
+						$("#transcript").css("overflow-y","scroll");
+					});
+					$("#script"+scriptIndex).css("background","gray");
+				}
+			}); 
+		}
+
+		function updatePlayIndex(ind){
+			if(ind.vid.match(playIndex.vid)==null){
+				player.loadVideoById({
+					videoId:ind.vid
+				});
+			}
+			playIndex.title=ind.title;
+			playIndex.vid=ind.vid;
+			playIndex.startTime=ind.startTime;
+			playIndex.endTime=ind.endTime;
+			saveLocalStoragePIDnArray(playIndex);
+			loadTranscript();
+		}
+
+		function parseYoutubeURL(url){
+			var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+			var match = url.match(regExp);
+			if (match && match[2].length == 11) {
+			  return match[2];
+			} else {
+			  //error
+			  return url; 
+			}
+		}
+
+		//tag.src = "https://www.youtube.com/iframe_api";
+		//firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		function onPlaybackQualityChange(event) {
+			console.log(event);
+		}
+
+		function onPlayerStateChange(event) {
+			console.log(event);
+			if (event.data == YT.PlayerState.PLAYING) {
+				$("#state").html("Playing");
+				$("#pauseLogo").show();
+				$("#playLogo").hide(0);
+				playIndex.state=1; 
+			}else{
+				$("#state").html("Pause");
+				$("#pauseLogo").hide(0);
+				$("#playLogo").show();
+				playIndex.state=0; 
+			}
+		}
+
+		function playWithVid(vid){
+			player.loadVideoById({videoId:vid});
+			//player.seekTo($("#startTime").val());
+			player.seekTo(playIndex.startTime); 
+			player.playVideo();
+		}
+		function playWithConf(){
+			/*
+			player.loadVideoById({
+				videoId:$("#vid").val(), 
+				startSeconds:$("#startTime").val(), 
+				endSeconds:$("#endTime").val()
+			});
+			*/
+			//player.seekTo($("#startTime").val());
+			player.seekTo(playIndex.startTime); 
+			player.playVideo();
+		}
+
+		function onReady(event, id) {
+			console.log("onReady");
+			//loadLocalStoragePID();
+			//$("#vid").val(playIndex.vid);
+			//console.log(event.target.getVideoData().title);
+
+			$("#"+id).on("changevid", function(e, data){
+				if(typeof(data) !== "undefined") {
+					console.log("changevid: "+data);
+					if(typeof(data.vid) !== "undefined") {
+						playWithVid(data.vid);
+					}
+				}
+			}); 
+
+			function logDuration(event, id) {
+				if(typeof(event) !== "undefined") {
+					this.target=event.target; 
+				}else{
+					console.log("error: for logDuration got event");
+					return; 
+				}
+				var videoData=this.target.getVideoData();
+				if(videoData==null){
+					playIndex.title=""; 
+				}else{
+					playIndex.title=videoData.title; 
+				}
+				$("#"+id).attr("video_title", playIndex.title);
+				var positionVal=parseFloat(this.target.getCurrentTime());
+				var durationVal=parseInt(this.target.getDuration());
+				playIndex.position=positionVal; 
+				playIndex.duration=durationVal; 
+				var startTimeVal=playIndex.startTime; 
+				var endTimeVal=parseFloat(playIndex.endTime);
+				if(playIndex.state==1){
+					if(((endTimeVal>startTimeVal)
+					   &&(positionVal>=endTimeVal))||(positionVal<startTimeVal)){
+						if(playIndex.init==1){
+							this.target.seekTo(playIndex.startTime);
+							playIndex.init=0; 
+						}else{
+							if(playIndex.repeat==0){
+								this.target.pauseVideo();
+								this.target.seekTo(playIndex.startTime);
+							}else{
+								this.target.seekTo(playIndex.startTime);
+							}
+						}
+					}
+				}
+				if(positionVal>scriptArray[scriptIndex]){
+					//console.log("positionVal:"+positionVal+", scriptArray["+scriptIndex+"]: "+scriptArray[scriptIndex]);
+					//$("#script"+scriptIndex).css("background","");
+					$("div[id^='script']").each(function(){
+						$(this).css("background","");
+					}); 
+					for(var i=scriptIndex; i<scriptArray.length; i++){
+						if(positionVal<scriptArray[i]){
+							scriptIndex=i; 
+							break; 
+						}
+					}
+					//scriptIndex++;
+					var scrollTopVal=$("#script"+scriptIndex).offset().top-$("#transcript").offset().top+$("#transcript").scrollTop(); 
+					$("#script"+scriptIndex).css("background","gray");
+					$("#transcript").scrollTop(scrollTopVal);
+				}
+				$("#title").text(playIndex.title);
+				$("#position").text(positionVal);
+				$("#duration").text(durationVal);
+				//$("#taglink").attr("href", location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/tubetag/tag4.html?tag="+"[{\"vid\":\""+playIndex.vid+"\",\"startTime\":\""+playIndex.startTime+"\",\"endTime\":\""+playIndex.endTime+"\",\"repeat\":\""+playIndex.repeat+"\",\"text\":\""+playIndex.title+"\"}]");
+				$("#taglink").attr("href", location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/tubetag/tag4.html?tag="+"{\"vid\":\""+playIndex.vid+"\",\"startTime\":\""+playIndex.startTime+"\",\"endTime\":\""+playIndex.endTime+"\",\"repeat\":\""+playIndex.repeat+"\",\"text\":\""+playIndex.title+"\"}");
+				$("#taglink").html(playIndex.title);
+				if(logDurationTimer) clearTimeout(logDurationTimer);
+				logDurationTimer=window.setTimeout(function(){ logDuration(event, id) }, 100);
+			}
+			logDuration(event, id);
+			console.log(event);
+			//playWithConf();
+			$("#vid").change(function(){
+				//playWithConf();
+				updatePlayIndex({
+					vid:parseYoutubeURL($("#vid").val()),
+					startTime:0,
+					endTime:0
+				});
+				$("#startTime").val(0);
+				$("#endTime").val(0);
+				playWithVid(playIndex.vid);
+				$("#vid").val(playIndex.vid);
+			});
+			$("#vid").click(function(){
+				$(this).select();
+			});
+			$("#startTime").change(function(){changeStartTime($(this).val());});
+			$("#startTime").keypress(function(e){if(e.which==13){changeStartTime($(this).val());}}); 
+			function changeStartTime(s){
+				var startTimeVal=parseFloat(s); 
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:startTimeVal,
+					endTime:playIndex.endTime
+				});
+				playWithConf();
+			}
+			$("#startTimeLShift").click(function(){
+				var startTimeVal=parseFloat($("#startTime").val()); 
+				startTimeVal-=0.1; 
+				startTimeVal=parseFloat(startTimeVal);
+				startTimeVal=parseFloat(startTimeVal.toFixed(2));
+				if(startTimeVal<0) startTimeVal=0;
+				$("#startTime").val(startTimeVal);
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:startTimeVal,
+					endTime:playIndex.endTime
+				});
+				playWithConf();
+			});
+			$("#startTimeRShift").click(function(){
+				var startTimeVal=parseFloat($("#startTime").val()); 
+				startTimeVal=parseFloat(startTimeVal)+0.1; 
+				startTimeVal=parseFloat(startTimeVal);
+				startTimeVal=parseFloat(startTimeVal.toFixed(2));
+				$("#startTime").val(startTimeVal);
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:startTimeVal,
+					endTime:playIndex.endTime
+				});
+				playWithConf();
+			});
+			$("#endTime").change(function(){changeEndTime($(this).val());});
+			$("#endTime").keypress(function(e){if(e.which==13){changeEndTime($(this).val());}}); 
+			function changeEndTime(e){
+				var endTimeVal=e; 
+				endTimeVal=parseFloat(endTimeVal);
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:playIndex.startTime,
+					endTime:endTimeVal
+				});
+				//playWithConf();
+			}
+			$("#endTimeLShift").click(function(){
+				var endTimeVal=parseFloat($("#endTime").val());
+				endTimeVal-=0.1;
+				endTimeVal=parseFloat(endTimeVal);
+				endTimeVal=parseFloat(endTimeVal.toFixed(2));
+				if(endTimeVal<0) endTimeVal=0; 
+				$("#endTime").val(endTimeVal);
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:playIndex.startTime,
+					endTime:endTimeVal
+				});
+			});
+			$("#endTimeRShift").click(function(){
+				var endTimeVal=parseFloat($("#endTime").val());
+				endTimeVal=parseFloat(endTimeVal)+0.1;
+				endTimeVal=parseFloat(endTimeVal);
+				endTimeVal=parseFloat(endTimeVal.toFixed(2));
+				$("#endTime").val(endTimeVal);
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:playIndex.startTime,
+					endTime:endTimeVal
+				});
+			});
+			$("#aTrigger").click(function(){
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:parseFloat($("#position").html()),
+					endTime:playIndex.endTime
+				});
+				$("#startTime").val(playIndex.startTime);
+			});
+			$("#bTrigger").click(function(){
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:playIndex.startTime,
+					endTime:parseFloat($("#position").html())
+				});
+				$("#endTime").val(playIndex.endTime);
+			});
+			$("#cTrigger").click(function(){
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:0,
+					endTime:0
+				});
+				$("#startTime").val(0);
+				$("#endTime").val(0);
+			});
+			$("#rTrigger").click(function(){
+				playWithConf();
+				//player.seekTo(playIndex.startTime);
+				//player.seekTo($("#startTime").val());
+			});
+			$("#addTag").click(function(){
+				addTagByRandomName({
+					vid:playIndex.vid,
+					startTime:playIndex.startTime,
+					endTime:playIndex.endTime,
+					title:playIndex.title,
+					note:$("#tagText").val()
+				});
+				$("#addTagModal").modal("hide");
+			});
+			$("#nTrigger").click(function(){
+				updatePlayIndex({
+					vid:playIndex.vid,
+					startTime:parseFloat(playIndex.endTime),
+					endTime:0
+				});
+				$("#startTime").val(parseFloat(playIndex.startTime));
+				$("#endTime").val(0);
+				//player.seekTo(playIndex.startTime);
+				playWithConf();
+				//player.seekTo($("#startTime").val());
+			});
+			$("#playPause").click(function(){
+				if(playIndex.state==1){
+					scriptIndex=0; 
+					player.pauseVideo();
+				}else{
+					player.playVideo();
+				}
+			});
+			$("#repeat").click(function(){
+				if($(this).prop("checked")==true){
+					console.log("repeat!!");
+					playIndex.repeat=1; 
+				}else{
+					console.log("unrepeat!!");
+					playIndex.repeat=0; 
+				}
+				saveLocalStoragePIDnArray(playIndex);
+			}); 
+			$(window).keydown(function( event ) {
+				//console.log($('#tagListModal').hasClass('in'));
+				if($('#tagListModal').hasClass('in')==true){
+					return; 
+				}
+				if($('#addTagModal').hasClass('in')==true){
+					return; 
+				}
+				if($('#searchModal').hasClass('in')==true){
+					return; 
+				}
+				if (event.which==32) {
+					event.preventDefault();
+					if(playIndex.state==1){
+						player.pauseVideo();
+					}else{
+						player.playVideo();
+					}
+				}
+				//aTrigger
+				if (event.which==38) {
+					event.preventDefault();
+					updatePlayIndex({
+						vid:playIndex.vid,
+						startTime:parseFloat($("#position").html()),
+						endTime:playIndex.endTime
+					});
+					$("#startTime").val(playIndex.startTime);
+				}
+				//bTrigger
+				if (event.which==40) {
+					event.preventDefault();
+					updatePlayIndex({
+						vid:playIndex.vid,
+						startTime:playIndex.startTime,
+						endTime:parseFloat($("#position").html())
+					});
+					$("#endTime").val(playIndex.endTime);
+				}
+				if (event.which==37) {
+					event.preventDefault();
+					var startTimeVal=parseFloat($("#position").html());
+					startTimeVal-=5; 
+					startTimeVal=parseFloat(startTimeVal);
+					startTimeVal=parseFloat(startTimeVal.toFixed(2));
+					if(startTimeVal<0) startTimeVal=0;
+					$("#startTime").val(startTimeVal);
+					$("#endTime").val(startTimeVal);
+					updatePlayIndex({
+						vid:playIndex.vid,
+						startTime:startTimeVal,
+						endTime:playIndex.endTime
+					});
+					playWithConf();
+				}
+				if (event.which==39) {
+					event.preventDefault();
+					updatePlayIndex({
+						vid:playIndex.vid,
+						startTime:parseFloat(playIndex.endTime),
+						endTime:0
+					});
+					$("#startTime").val(parseFloat(playIndex.startTime));
+					$("#endTime").val(0);
+					playWithConf();
+				}
+				if (event.which==189 || event.which==109) {
+					event.preventDefault();
+					player.setPlaybackRate(0.5);
+				}
+				if (event.which==187 || event.which==107) {
+					event.preventDefault();
+					player.setPlaybackRate(1);
+				}
+				if (event.which==191) {
+					event.preventDefault();
+					$("#searchModal").modal("show");
+					$('#query').focus();
+				}
+				//console.log( event );
+			});
+		}
+
+		function onError(event) {
+			console.log(event);
+		}
+
+		//window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
+		function onYouTubeIframeAPIReady() {
+			console.log("IFRAME API READY!");
+			player = new YT.Player("wooot", {
+				height:$("#wooot_outer").width()*270/320*0.8,
+				width:$("#wooot_outer").width()*0.8,
+/*
+				height: 270,
+				width: 320,
+*/
+				videoId: playIndex.vid,//"jExYHd1yyWc",
+				playerVars: {
+					//controls: 0,
+					iv_load_policy: 3 // Disables annotations.
+				},
+				events: {
+					"onReady": function(event){
+						onReady(event, "wooot");
+					},
+					"onStateChange": onPlayerStateChange,
+					"onPlaybackQualityChange": onPlaybackQualityChange,
+					"onError": onError
+				}
+			});
+		 };
+	</script>
+	<script>
+		function supportLocalStorage() {
+			if(typeof(Storage) !== "undefined") {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		var hashString, hashData;
+		function loadLocalStoragePID(){
+			if(window.location.hash!==""){
+				var hashString=window.location.hash.substring(1);
+				console.log("hash: "+hashString);
+				try{
+					hashData=$.parseJSON(hashString);
+					if(("vid" in hashData)){
+						if(typeof hashData.startTime == "undefined"){
+							hashData.startTime=0; 
+						}
+						if(typeof hashData.endTime == "undefined"){
+							hashData.endTime=0; 
+						}
+						if(typeof hashData.repeat == "undefined"){
+							hashData.repeat=1; 
+						}
+					}
+				}catch(err){
+					console.log("an error occured");
+				}
+			}
+			if(supportLocalStorage()){
+				/*
+				localStorage.removeItem("playIndex");
+				localStorage.removeItem("playIndexArray");
+				
+				*/
+				var localPIDStr=localStorage.getItem("playIndex");
+				var localPID=JSON.parse(localPIDStr);
+				var localPIDAStr=localStorage.getItem("playIndexArray");
+				var localPIDA=JSON.parse(localPIDAStr);
+				//if(typeof hashData.vid !== undefined){
+				if(hashData){
+				//if((hashData.hasOwnProperty("vid")) == true){
+					playIndex.vid=hashData.vid; 
+					playIndex.startTime=parseFloat(hashData.startTime); 
+					playIndex.endTime=parseFloat(hashData.endTime);
+					playIndex.repeat=hashData.repeat; 
+					console.log(playIndex.startTime);
+				}else if(localPID){
+					playIndex.vid=localPID.vid; 
+					playIndex.startTime=parseFloat(0); 
+					playIndex.endTime=parseFloat(0);
+					if(localPID.repeat!==undefined){
+						playIndex.repeat=localPID.repeat; 
+					}
+/*
+					playIndex.startTime=parseFloat(localPID.startTime); 
+					playIndex.endTime=parseFloat(localPID.endTime);
+*/
+					$("#startTime").val(playIndex.startTime);
+					$("#endTime").val(playIndex.endTime);
+					if(playIndex.repeat==1){
+						$("#repeat").prop("checked", true);
+					}else{
+						$("#repeat").prop("checked", false);
+					}
+				}
+				$("#startTime").val(playIndex.startTime);
+				$("#endTime").val(playIndex.endTime);
+				loadTranscript();
+				if(localPIDA){
+					playIndexArray=localPIDA; 
+					for(var name in localPIDA){
+						//if(playIndexArray[name].note) $("#tagText").val(playIndexArray[name].note); 
+						addTagByNameX("tagArea", playIndexArray[name], name);
+						//$("#tagText").val("");
+					}
+				}
+				$("#vid").val(playIndex.vid);
+			}
+		}
+
+		function saveLocalStoragePIDnArray(ind){
+			localStorage.setItem('playIndex', JSON.stringify(ind));
+			localStorage.setItem('playIndexArray',JSON.stringify(playIndexArray));
+		}
+
+		function debuginfo(msg){
+			$("#debug").html(msg);
+		}
+
+		function addTagByRandomName(ind){
+			var randomName=makeid();
+			var indobj={};
+			indobj.vid=ind.vid; 
+			indobj.startTime=ind.startTime; 
+			indobj.endTime=ind.endTime; 
+			indobj.title=ind.title; 
+			indobj.note=ind.note; 
+			playIndexArray[randomName]=indobj; 
+			updatePlayIndex(ind);
+			addTagByNameX("tagArea", ind, randomName);
+			$("#tagText").val("");
+			saveLocalStoragePIDnArray(ind);
+		}
+		$.fn.editable.defaults.mode = 'inline';
+		function addTagByName(ta, ind, randomName){
+			$("#"+ta).prepend("<div class='tagcontent' id="+randomName+">"+"</div>");
+			renderTagInfo(randomName, ind.vid, ind.startTime, ind.endTime, ind.title);
+			$("#"+randomName).prepend("<div id="+randomName+"ThumbNail></div>");
+			createThumbNail(randomName+"ThumbNail", ind.vid);
+			$("#"+randomName).append("<span id="+randomName+"PlayDiv class=''></span>");
+			//$("#"+randomName).append("<span id="+randomName+"PauseDiv class=''></span>");
+			$("#"+randomName).append("<span id="+randomName+"RemoveDiv class=''></span>");
+			//$("#"+randomName).append("<span id="+randomName+"EditDiv class=''></span>");
+			$("#"+randomName).append("<div>Note:</div>");
+			createTagBtn(randomName+"PlayDiv", randomName+"Play", "glyphicon glyphicon-play", {});
+			//createTagBtn(randomName+"PauseDiv", randomName+"Pause", "glyphicon glyphicon-pause", {});
+			createTagBtn(randomName+"RemoveDiv", randomName+"Remove", "glyphicon glyphicon-remove", {});
+			//createTagBtn(randomName+"EditDiv", randomName+"Edit", "glyphicon glyphicon-pencil", {});
+			$("#"+randomName+"Play").click(function(){
+				updatePlayIndex(playIndexArray[randomName]);
+				$("#startTime").val(playIndex.startTime);
+				$("#endTime").val(playIndex.endTime);
+				playWithConf();
+				$("#tagListModal").modal("hide");
+			});
+/*
+			$("#"+randomName+"Pause").click(function(){
+				updatePlayIndex(playIndexArray[randomName]);
+				$("#startTime").val(playIndex.startTime);
+				$("#endTime").val(playIndex.endTime);
+				player.pauseVideo();
+			});
+*/
+			$("#"+randomName+"Remove").click(function(){
+				$("#"+randomName).remove();
+				delete playIndexArray[randomName];
+				saveLocalStoragePIDnArray(playIndex);
+			});
+/*
+			$("#"+randomName+"Edit").click(function(){
+				var inputObj=document.getElementById(randomName+"TextInput");
+				if(inputObj!==null){
+					var inputVal=$("#"+randomName+"TextInput").val();
+					$("#"+randomName+"Text").html("");
+					//$("#"+randomName+"Text").append(inputVal);
+					$("#"+randomName+"Text").append("<div id="+randomName+"noteVal class='noteVal'>"+inputVal+"</div>");
+					playIndexArray[randomName].note=inputVal; 
+					saveLocalStoragePIDnArray(playIndex);
+					return; 
+				}
+				var noteVal=$("#"+randomName+"noteVal").html();
+				$("#"+randomName+"Text").html("");
+				$("#"+randomName+"Text").append("<input type='text' class='form-control' id="+randomName+"TextInput ></input>");
+				$("#"+randomName+"TextInput").val(noteVal).focus();
+				$("#"+randomName+"TextInput").change(function(){
+					var inputVal=$(this).val();
+					$("#"+randomName+"Text").html("");
+					//$("#"+randomName+"Text").append(inputVal);
+					$("#"+randomName+"Text").append("<div id="+randomName+"noteVal class='noteVal'>"+inputVal+"</div>");
+					playIndexArray[randomName].note=inputVal; 
+					saveLocalStoragePIDnArray(playIndex);
+				});
+				$("#"+randomName+"TextInput").keypress(function(e){
+					if(e.which==13){
+						var inputVal=$(this).val();
+						$("#"+randomName+"Text").html("");
+						//$("#"+randomName+"Text").append(inputVal);
+						$("#"+randomName+"Text").append("<div id="+randomName+"noteVal class='noteVal'>"+inputVal+"</div>");
+						playIndexArray[randomName].note=inputVal; 
+						saveLocalStoragePIDnArray(playIndex);
+					}
+				}); 
+			});
+*/
+			$("#"+randomName).append("<div id="+randomName+"Text style='font-size:20px'></div>");
+/*
+			$("#"+randomName+"Text").append("<div id="+randomName+"noteVal class='noteVal'>"+$("#tagText").val()+"</div>");
+*/
+			$("#"+randomName+"Text").append("<a href='#"+randomName+"noteVal' id='"+randomName+"noteVal'>"+$("#tagText").val()+"</a>"); 
+			$('#'+randomName+'noteVal').editable({
+				type:  'text',
+				pk:    1,
+				name:  'notes',
+				title: 'Enter Notes',
+				inputclass:"form-control",
+				enablefocus:true,
+				emptytext:"Enter Your Notes",
+				success: function(response, newValue) {
+					playIndexArray[randomName].note=newValue; 
+					saveLocalStoragePIDnArray(playIndex);
+					return; 
+				}
+			});
+			playIndexArray[randomName].note=$("#tagText").val();
+			$("#tagText").val("");
+			$("#"+randomName).append("<br/>");
+		}
+		function addTagByNameX(ta, ind, randomName){
+			$("#"+ta).prepend("<div class='tagcontent' id="+randomName+">"+"</div>");
+			renderTagInfo(randomName, ind.vid, ind.startTime, ind.endTime, ind.title);
+			$("#"+randomName).prepend("<div id="+randomName+"ThumbNail></div>");
+			createThumbNail(randomName+"ThumbNail", ind.vid);
+			$("#"+randomName).append("<span id="+randomName+"PlayDiv class=''></span>");
+			$("#"+randomName).append("<span id="+randomName+"RemoveDiv class=''></span>");
+			$("#"+randomName).append("<div>Note:</div>");
+			createTagBtn(randomName+"PlayDiv", randomName+"Play", "glyphicon glyphicon-play", {});
+			createTagBtn(randomName+"RemoveDiv", randomName+"Remove", "glyphicon glyphicon-remove", {});
+			$("#"+randomName+"Play").click(function(){
+				updatePlayIndex(ind);
+				$("#startTime").val(playIndex.startTime);
+				$("#endTime").val(playIndex.endTime);
+				playWithConf();
+				$("#tagListModal").modal("hide");
+			});
+			$("#"+randomName+"Remove").click(function(){
+				$("#"+randomName).remove();
+				delete playIndexArray[randomName];
+				saveLocalStoragePIDnArray(playIndex);
+			});
+			$("#"+randomName).append("<div id="+randomName+"Text style='font-size:20px'></div>");
+			$("#"+randomName+"Text").append("<a href='#"+randomName+"noteVal' id='"+randomName+"noteVal'>"+ind.note+"</a>"); 
+			$('#'+randomName+'noteVal').editable({
+				type:  'text',
+				pk:    1,
+				name:  'notes',
+				title: 'Enter Notes',
+				inputclass:"form-control",
+				enablefocus:true,
+				emptytext:"Enter Your Notes",
+				success: function(response, newValue) {
+					ind.note=newValue; 
+					saveLocalStoragePIDnArray(playIndex);
+					return; 
+				}
+			});
+			$("#"+randomName).append("<br/>");
+		}
+
+		$(document).ready(function(){
+			Parse.initialize(parseappid, parseappkey);
+			loadLocalStoragePID();
+			createVideoList2();
+			$("#all").show();
+			window.onYouTubeIframeAPIReady=onYouTubeIframeAPIReady; 
+			$.getScript("https://www.youtube.com/iframe_api", function(data, textStatus){
+				console.log("youtube script get!!");
+			});
+/*
+			sheetURL=composeSheetURL("1OUsdQ1d8y6HHzTTGwEmBSvzq9yKzFVHE7UtQl8Dr07E", 2);
+			$.getScript(sheetURL, function(data, textStatus){
+				readData();
+				console.log(arrayData.length);
+				console.log(arrayData[0]);
+				console.log(arrayData[1]);
+				createVideoList(arrayData[0], arrayData[1]);
+				$("#all").show();
+				window.onYouTubeIframeAPIReady=onYouTubeIframeAPIReady; 
+				$.getScript("https://www.youtube.com/iframe_api", function(data, textStatus){
+					console.log("youtube script get!!");
+				});
+			});
+*/
+		});
+	</script>
+  </body>
+</html>
+

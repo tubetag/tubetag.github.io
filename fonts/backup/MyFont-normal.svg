@@ -1,0 +1,43 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<metadata>
+Created by FontForge 20141024 at Fri Oct 30 08:23:01 2015
+ By Jimmy Warting
+ 
+</metadata>
+<defs>
+<font id="MyFont-normal" horiz-adv-x="472" >
+  <font-face 
+    font-family="My Font "
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1000"
+    panose-1="0 0 0 0 0 0 0 0 0 0"
+    ascent="800"
+    descent="-200"
+    cap-height="586"
+    bbox="0 -321.565 752.122 700"
+    underline-thickness="0"
+    underline-position="0"
+    unicode-range="U+0020-004F"
+  />
+<missing-glyph 
+d="M0 700v-700h432v700h-432zM50 50v600h332v-600h-332z" />
+    <glyph glyph-name=".notdef" 
+d="M0 700v-700h432v700h-432zM50 50v600h332v-600h-332z" />
+    <glyph glyph-name=".notdef" 
+d="M0 700v-700h432v700h-432zM50 50v600h332v-600h-332z" />
+    <glyph glyph-name="space" unicode=" " horiz-adv-x="500" 
+ />
+    <glyph glyph-name="A" unicode="A" horiz-adv-x="792" 
+d="M752 -179c-2 56 -207 597 -207 597s-36 114 -95 158c-69 51 -191 4 -191 4s-94 -23 -132 -109c-26 -56 31 -194 34 -194s262 -524 329 -571c62 -45 108 -28 164 2c48 25 101 36 98 113zM245 380c0 56 46 101 102 101s103 -45 103 -101c0 -55 -46 -101 -103 -101
+s-102 45 -102 101zM254 380c0 51 41 92 92 92c50 0 93 -41 93 -92s-42 -93 -93 -93c-52 0 -92 41 -92 93zM161 463c0 14 13 26 28 26s28 -12 28 -26c0 -15 -13 -26 -28 -26c-14 0 -28 12 -28 26zM304 458l-7 -44l50 25zM347 128c0 14 13 27 28 27s28 -12 28 -27
+c0 -14 -13 -26 -28 -26s-28 12 -28 26zM483 196c0 14 13 27 28 27s28 -13 28 -27c0 -15 -13 -26 -28 -26s-28 12 -28 26zM525 95c0 14 13 26 28 26s27 -12 27 -26c0 -15 -13 -26 -27 -26c-15 0 -28 12 -28 26zM391 38c0 14 13 27 28 27s27 -12 27 -27c0 -14 -13 -26 -27 -26
+c-15 0 -28 12 -28 26zM434 -49c0 14 13 27 28 27s27 -12 27 -27c0 -14 -13 -26 -27 -26c-15 0 -28 12 -28 26zM491 -153c0 14 13 26 28 26s28 -12 28 -26c0 -15 -13 -26 -28 -26s-28 12 -28 26zM566 1c0 14 13 27 28 27s27 -12 27 -27c0 -14 -13 -26 -27 -26
+c-15 0 -28 12 -28 26zM607 -106c0 14 13 27 28 27s27 -12 27 -27c0 -14 -13 -26 -27 -26c-15 0 -28 12 -28 26zM512 -260c33 -31 76 -25 76 -25s-8 -15 -46 -4c-29 9 -40 25 -40 25s-15 13 -40 47c-38 54 -78 127 -78 127s81 -126 128 -170zM272 338l44 -4l-28 47zM427 417
+l-44 9l23 -50zM389 303l5 45l-48 -27zM409 567c-28 13 -65 11 -65 11s18 13 44 8c21 -3 27 -8 27 -8s16 -7 32 -23c25 -25 41 -60 41 -60s-44 57 -79 72z" />
+    <glyph glyph-name="O" unicode="O" horiz-adv-x="40" 
+ />
+  </font>
+</defs></svg>
